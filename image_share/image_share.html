@@ -4,12 +4,24 @@
 
 <body>
     <h1>Welcome to Meteor!</h1>
-
-    {{> images}}
+    <div class="container">
+        {{> images}}
+    </div>
 </body>
 
 <template name="images">
-    {{#each images}}
-        <img src="{{img_src}}" alt="{{img_alt}}" />
-    {{/each}}
+    <!-- To add bootstrap in meteor, just add the package 'twbs:bootstrap' -->
+    <div class="row"> <!-- row -->
+        {{#each images}}
+        <div class="col-xs-12 col-md-3"> <!-- col -->
+            <div class="thumbnail">
+                <img src="{{img_src}}" alt="{{img_alt}}" />
+                <div class="caption">
+                    <h3>{{name}}</h3>
+                    <p>{{img_alt}}</p>
+                </div>
+            </div>
+        </div> <!-- / col -->
+        {{/each}}
+    </div> <!-- / row -->
 </template>
