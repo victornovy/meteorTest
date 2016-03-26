@@ -8,6 +8,14 @@ if (Meteor.isClient) {
         images: Images.find({}, {sort: {createdOn: -1, rating: -1}})
     });
 
+    Template.body.helpers({
+        'username': function() {
+            if (!Meteor.user())
+                return "Guy";
+            return Meteor.user().emails[0].address;
+        }
+    });
+
     Template.images.events({
         'click .js-del-image': function(event) {
             console.log("Id image removed " + this._id);
