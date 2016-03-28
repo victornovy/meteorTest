@@ -68,6 +68,7 @@
                         more information in 'https://atmospherejs.com/barbatus/stars-rating'-->
                         <p>Rating: {{rating}}</p>
                         <p>{{> starsRating rating=rating mutable="true" class="js-rate-image" id=_id}}</p>
+                        <p>User: {{getUser createdBy}}</p>
                         <button class="js-del-image btn btn-warning">delete</button>
                     </div> <!-- / caption -->
                 </div>
