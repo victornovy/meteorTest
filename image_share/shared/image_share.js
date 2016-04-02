@@ -1,1 +1,1 @@
-Images = new Mongo.Collection("images");
+/*This directory is to shared functions between the client and server*/
