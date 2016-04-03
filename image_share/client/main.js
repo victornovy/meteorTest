@@ -1,7 +1,40 @@
 console.log("Cliente");
 
-Session.set("imageLimit", 8);
+//routing
+Router.configure({
+    layoutTemplate: 'applicationLayout'
+});
 
+Router.route('/', function() {
+    this.render('welcome', {
+        to: 'main'
+    });
+});
+
+Router.route('/images', function() {
+    this.render('navbar', {
+        to: 'navbar'
+    });
+    this.render('images', {
+        to: 'main'
+    });
+});
+
+Router.route('/image/:_id', function() {
+    this.render('navbar', {
+        to: 'navbar'
+    });
+    this.render('image', {
+        to: 'main',
+        data: function() {
+            return Images.findOne({_id: this.params._id});
+        }
+    });
+});
+
+
+//infinite scroll
+Session.set("imageLimit", 8);
 lastScrollTop = 0;
 $(window).scroll(function(event) {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 120) {
@@ -12,10 +45,12 @@ $(window).scroll(function(event) {
     }
 });
 
+//accounts config
 Accounts.ui.config({
     passwordSignupFields: "USERNAME_AND_EMAIL"
 });
 
+//templates helpers
 //.find('filter', 'sort')
 Template.images.helpers({
     images: function() {
@@ -54,6 +89,7 @@ Template.body.helpers({
     }
 });
 
+//templates events
 Template.images.events({
     'click .js-del-image': function(event) {
         console.log("Id image removed " + this._id);
